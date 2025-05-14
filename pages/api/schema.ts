@@ -6,14 +6,12 @@ export const typeDefs = gql`
   scalar JSON
 
   type Query {
-    dummy: String
     forecast(city: String!): JSON
   }
 `;
 export const resolvers = {
   JSON: JSONObject,
   Query: {
-    dummy: () => "hello",
     forecast: (_: unknown, { city }: { city: string }) => {
       const cached = weatherCache[city];
       if (!cached) {

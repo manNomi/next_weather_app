@@ -1,31 +1,30 @@
 import React from "react";
-import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
 
-const client = new ApolloClient({
-  uri: "/api/graphql",
-  cache: new InMemoryCache(),
-});
+const GET_FORECAST = gql`
+  query GetForecast($city: String!) {
+    forecast(city: $city)
+  }
+`;
 
 const MainPage = () => {
-  React.useEffect(() => {
-    client
-      .query({
-        query: gql`
-          query {
-            forecast(city: "Seoul")
-          }
-        `,
-      })
-      .then((result) => console.log(result.data))
-      .catch((error) => console.error("Error fetching weather data:", error));
+  const { data, loading, error } = useQuery(GET_FORECAST, {
+    variables: { city: "Seoul" },
+  });
 
-    console.log("MainPage component mounted");
-  }, []);
+  React.useEffect(() => {
+    console.log(data);
+  }, [data]);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
 
   return (
     <div>
       <div>메인</div>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
     </div>
   );
 };
+
 export default MainPage;

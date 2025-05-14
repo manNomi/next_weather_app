@@ -1,3 +1,0 @@
-const useGetForecast = () => {
-  return {};
-};

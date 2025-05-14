@@ -1,25 +1,31 @@
-import Head from "next/head";
-import Link from "next/link";
+import React from "react";
+import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 
-const Home = () => {
+const client = new ApolloClient({
+  uri: "/api/graphql",
+  cache: new InMemoryCache(),
+});
+
+const MainPage = () => {
+  React.useEffect(() => {
+    client
+      .query({
+        query: gql`
+          query {
+            forecast(city: "Seoul")
+          }
+        `,
+      })
+      .then((result) => console.log(result.data))
+      .catch((error) => console.error("Error fetching weather data:", error));
+
+    console.log("MainPage component mounted");
+  }, []);
+
   return (
-    <>
-      <Head>
-        <title>Weather App</title>
-      </Head>
-      <main>
-        <h1>도시를 선택해주세요</h1>
-        <ul>
-          <li>
-            <Link href="/Seoul">서울</Link>
-          </li>
-          <li>
-            <Link href="/Tokyo">도쿄</Link>
-          </li>
-        </ul>
-      </main>
-    </>
+    <div>
+      <div>메인</div>
+    </div>
   );
 };
-
-export default Home;
+export default MainPage;

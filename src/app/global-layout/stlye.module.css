@@ -1,0 +1,28 @@
+.wrapper {
+  width: 100%;
+  overflow-y: auto;
+}
+.container {
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 16px;
+}
+
+/* 중간 (800px ≥ width) */
+@media (max-width: 799px) {
+  .wrapper {
+    overflow-x: auto;
+  }
+  .container {
+    min-width: 800px;
+  }
+}
+
+/* 넓은 화면 (1280px ≤ width) */
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+    width: 1280px;
+  }
+}

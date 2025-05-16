@@ -26,7 +26,7 @@ const CityForecast = (props: CityForecastProps) => {
 
       {isExpanded && (
         <div className={forecast.accordionContent}>
-          {forecastData[date].map((item, index) => (
+          {forecastData.map((item, index) => (
             <div key={`${item.dt} - ${index}`} className={forecast.forecastRow}>
               <div className={forecast.rowIconContainer}>
                 {/* 아이콘: 첫 번째 컬럼 */}

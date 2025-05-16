@@ -11,6 +11,7 @@ import downVectorIcon from "@/shared/assets/svg/down-vector.svg";
 import upVectorIcon from "@/shared/assets/svg/up-vector.svg";
 import earthIcon from "@/shared/assets/svg/earth-graphic.svg";
 import WeatherIcon from "../../shared/ui/WeatherIcon";
+import { WEATHER_CITIES } from "@/shared/constant/weatherCities";
 
 interface CityPageProps {
   city: string;
@@ -18,9 +19,8 @@ interface CityPageProps {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const cities = ["Seoul", "Tokyo", "Paris"];
   return {
-    paths: cities.map((c) => ({ params: { city: c } })),
+    paths: WEATHER_CITIES.map((c) => ({ params: { city: c } })),
     fallback: false,
   };
 };
@@ -140,14 +140,21 @@ export default function CityPage({ city, data }: CityPageProps) {
                   );
                   return (
                     <div key={item.dt} className={styles.forecastRow}>
+                      {/* 아이콘: 첫 번째 컬럼 */}
                       <WeatherIcon code={item.weather.icon} size={32} />
+
+                      {/* 시간: 두 번째 컬럼 */}
                       <span className={styles.rowTime}>{time}</span>
+
+                      {/* 설명: 세 번째 컬럼 */}
+                      <span className={styles.rowDesc}>
+                        {item.weather.description}
+                      </span>
+
+                      {/* 온도: 네 번째 컬럼 */}
                       <span className={styles.rowTemp}>
                         {item.temp.min.toFixed(2)}°C /{" "}
                         {item.temp.max.toFixed(2)}°C
-                      </span>
-                      <span className={styles.rowDesc}>
-                        {item.weather.description}
                       </span>
                     </div>
                   );

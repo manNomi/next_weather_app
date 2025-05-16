@@ -99,26 +99,40 @@
 }
 
 .forecastRow {
-  display: flex;
+  display: grid;
+  grid-template-columns: 40px 80px 1fr 100px;
   align-items: center;
-  gap: 12px;
-  padding: 8px 0;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin-bottom: 8px;
 }
 
+/* 마지막 카드의 하단 여백 제거 */
+.forecastRow:last-child {
+  margin-bottom: 0;
+}
+
+/* 첫 번째 컬럼(아이콘)은 기본으로 둡니다 */
+
+/* 두 번째 컬럼: 시간 */
 .rowTime {
-  width: 60px;
+  grid-column: 2;
   font-size: 0.9rem;
   color: #333;
 }
 
-.rowTemp {
-  width: 100px;
-  font-size: 0.9rem;
-  color: #333;
-}
-
+/* 세 번째 컬럼: 설명 */
 .rowDesc {
-  flex: 1;
-  font-size: 0.9rem;
+  grid-column: 3;
+  font-size: 0.85rem;
   color: #555;
+}
+
+/* 네 번째 컬럼: 온도 */
+.rowTemp {
+  grid-column: 4;
+  text-align: right;
+  font-weight: 600;
+  font-size: 0.9rem;
 }

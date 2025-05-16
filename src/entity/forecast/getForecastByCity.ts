@@ -5,10 +5,7 @@ export const GET_FORECAST_BY_CITY: DocumentNode = gql`
   query Forecast($city: String!) {
     forecast(city: $city) {
       city {
-        name
         country
-        sunrise
-        sunset
         population
       }
       list {
@@ -22,19 +19,11 @@ export const GET_FORECAST_BY_CITY: DocumentNode = gql`
           humidity
         }
         weather {
-          main
           description
           icon
         }
-        clouds
         wind {
           speed
-          deg
-          gust
-        }
-        precipitation {
-          probability
-          volume
         }
       }
     }

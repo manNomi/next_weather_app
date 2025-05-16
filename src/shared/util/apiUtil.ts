@@ -1,4 +1,4 @@
-import { client } from "@/shared/lib/apolloClient";
+import { apolloClient } from "@/shared/lib/apolloClient";
 import { DocumentNode } from "@apollo/client";
 
 export async function fetchStatic<TData, TVariables = Record<string, any>>(
@@ -6,7 +6,7 @@ export async function fetchStatic<TData, TVariables = Record<string, any>>(
   variables?: TVariables
 ): Promise<TData> {
   try {
-    const { data } = await client.query<TData>({
+    const { data } = await apolloClient.query<TData>({
       query,
       variables: variables as any,
       fetchPolicy: "network-only",

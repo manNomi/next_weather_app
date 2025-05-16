@@ -6,7 +6,15 @@ html,
 body {
   padding: 0;
   margin: 0;
+  line-height: 1.1;
   background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 a {

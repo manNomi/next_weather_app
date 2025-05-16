@@ -1,32 +1,37 @@
+/* Light Theme */
 :root {
-  --background-color: #1a1a1a;
-  --surface-color: #2a2a2a;
+  --primary-color: var(--color-primary);
+  --secondary-color: var(--color-secondary);
+  --background-color: var(--color-background-light);
+  --surface-color: var(--color-surface-light);
 
-  /* Text */
-  --text-color: #e0e0e0;
-  --muted-text-color: #8b8b8b;
+  --box-border-color: var(--color-border-light);
+  --btn-hover-color: var(--secondary-color);
+  --btn-hover-border-color: var(--color-border-dark);
+  --btn-select-color: var(--color-btn-select);
+  --btn-select-border-color: var(--primary-color);
 
-  /* Button */
-  --btn-hover-color: #ff0045;
-  --btn-hover-border-color: #ff0045;
-  --btn-select-color: #ff3b3b;
-  --btn-select-border-color: #ff3b3b;
+  --text-color: var(--color-text-dark);
+  --muted-text-color: var(--color-text-muted);
+  --muted-deep-text-color: var(--color-text-muted-deep);
 }
 
-/* Dark mode  */
-@media (prefers-color-scheme: dark) {
+/* 개발중 white로 구현 */
+/* Dark Theme */
+@media (prefers-color-scheme: white) {
   :root {
-    --background-color: #faf7f5;
-    --surface-color: #ffffff;
+    --background-color: var(--color-background-dark);
 
-    /* Text */
-    --text-color: var(--banner-text-color-black);
-    --muted-text-color: var(--description-gray);
+    --surface-color: var(--color-surface-dark);
 
-    /* Button */
-    --btn-hover-color: var(--secondary-color);
-    --btn-hover-border-color: #b70055;
-    --btn-select-color: #ffaba1;
-    --btn-select-border-color: var(--primary-color);
+    --box-border-color: var(--color-border-light);
+    --btn-hover-color: var(--color-primary);
+    --btn-hover-border-color: var(--color-primary);
+    --btn-select-color: var(--color-btn-select-dark);
+    --btn-select-border-color: var(--color-btn-select-dark);
+
+    --text-color: var(--color-text-light);
+    --muted-text-color: var(--color-text-muted);
+    --muted-deep-text-color: var(--color-text-muted-deep);
   }
 }

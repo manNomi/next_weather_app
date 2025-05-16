@@ -6,11 +6,7 @@ import banner from "./style/banner.module.css";
 import layout from "./style/layout.module.css";
 import summary from "./style/summary.module.css";
 
-import {
-  getWeatherByCity,
-  Forecast,
-  ForecastItem,
-} from "@/entity/weather/getWeatherByCity";
+import { getForecastByCity } from "@/entity/forecast/getForecastByCity";
 import downVectorIcon from "@/shared/assets/svg/down-vector.svg";
 import upVectorIcon from "@/shared/assets/svg/up-vector.svg";
 import earthIcon from "@/shared/assets/svg/earth-graphic.svg";
@@ -24,7 +20,7 @@ import {
 
 interface CityPageProps {
   city: string;
-  data: Forecast;
+  data: CityForecastResponse;
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -38,7 +34,7 @@ export const getStaticProps: GetStaticProps<CityPageProps> = async ({
   params,
 }) => {
   const city = params?.city as string;
-  const data = await getWeatherByCity(city);
+  const data = await getForecastByCity(city);
   return { props: { city, data } };
 };
 
@@ -46,7 +42,7 @@ export default function CityPage({ city, data }: CityPageProps) {
   const [openDate, setOpenDate] = useState<string | null>(null);
 
   // Group items by date (YYYY-MM-DD)
-  const grouped = data.list.reduce<Record<string, ForecastItem[]>>(
+  const grouped = data.list.reduce<Record<string, ForecastEntry[]>>(
     (acc, item) => {
       const date = new Date(item.dt * 1000).toISOString().split("T")[0];
       if (!acc[date]) acc[date] = [];

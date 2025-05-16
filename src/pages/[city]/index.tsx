@@ -17,6 +17,7 @@ import { WEATHER_CITIES } from "@/shared/constant/weatherCities";
 // lib
 import { formatTimestamp } from "@/shared/lib/dateFormatter";
 import { convertGroupedByDate } from "../../widgets/city/lib/convertGroupedByDate";
+import CommonMetaTags from "@/shared/lib/meta/meta";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
@@ -50,6 +51,10 @@ const CityPage = (props: CityPageProps) => {
 
   return (
     <main className={layout.wrapper}>
+      <CommonMetaTags
+        title={`${city} Weather`}
+        description={`${city}의 현재 날씨 및 5일 예보를 확인하세요.`}
+      />
       {/* 배너 영역 */}
       <div className={banner.topBanner}>
         <Image

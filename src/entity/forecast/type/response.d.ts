@@ -1,8 +1,5 @@
 type ForecastCityInfo = {
-  name: string;
   country: string;
-  sunrise: number;
-  sunset: number;
   population: number;
 };
 
@@ -22,13 +19,6 @@ type WeatherCondition = {
 
 type WindInfo = {
   speed: number;
-  deg: number;
-  gust: number;
-};
-
-type PrecipitationInfo = {
-  probability: number;
-  volume: number | null;
 };
 
 type ForecastEntry = {
@@ -36,9 +26,7 @@ type ForecastEntry = {
   timeText: string;
   temp: WeatherTemperatureData;
   weather: WeatherCondition;
-  clouds: number;
   wind: WindInfo;
-  precipitation: PrecipitationInfo;
 };
 
 type CityForecastResponse = {

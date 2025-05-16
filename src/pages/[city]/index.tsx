@@ -34,7 +34,10 @@ export const getStaticProps: GetStaticProps<CityPageProps> = async ({
 };
 
 const CityPage = (props: CityPageProps) => {
-  const { data } = props;
+  const { city, data } = props;
+  const { country, population } = data.city;
+
+  console.log("CityPage", data);
 
   // 날짜별로 그룹화된 데이터를 메모이제이션
   const grouped = React.useMemo(() => convertGroupedByDate(data), [data]);
@@ -52,9 +55,7 @@ const CityPage = (props: CityPageProps) => {
           width={68}
           height={51}
         />
-        <h1 className={banner.title}>
-          Weather Information for {data.city.name}
-        </h1>
+        <h1 className={banner.title}>Weather Information for {city}</h1>
       </div>
 
       {/* 현재 도시의 날씨 섹션 */}
@@ -64,9 +65,9 @@ const CityPage = (props: CityPageProps) => {
           <div>
             <div className={summary.timestamp}>{formatTimestamp(today.dt)}</div>
             <div className={summary.location}>
-              {data.city.name}, {data.city.country}
+              {city}, {country}
               <span className={summary.population}>
-                (인구수 : {data.city.population})
+                (인구수 : {population})
               </span>
             </div>
           </div>

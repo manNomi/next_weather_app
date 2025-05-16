@@ -30,5 +30,7 @@ export const formatTimestamp = (timestamp: number): string => {
 };
 
 export const getDateFromTimestamp = (timestamp: number): string => {
-  return new Date(timestamp * 1000).toISOString().split("T")[0];
+  return new Date(timestamp * 1000).toLocaleDateString("en-CA", {
+    timeZone: "Asia/Seoul",
+  });
 };

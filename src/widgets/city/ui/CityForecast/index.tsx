@@ -9,6 +9,7 @@ import forecast from "./style/forecast.module.css";
 
 const CityForecast = (props: CityForecastProps) => {
   const { date, forecastData } = props;
+  console.log("forecastData", forecastData);
 
   // state
   const [isExpanded, toggleExpanded] = useToggleState();
@@ -36,7 +37,6 @@ const CityForecast = (props: CityForecastProps) => {
               </div>
 
               {/* 설명: 세 번째 컬럼 */}
-
               <div className={forecast.rowDescContainer}>
                 {/* 설명 */}
                 <span className={forecast.rowDesc}>

@@ -1,5 +1,4 @@
-type CommonMetaTagsProps = {
+type SeoMetaTagsProps = {
   title?: string;
   description?: string;
-  url?: string;
 };

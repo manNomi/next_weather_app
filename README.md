@@ -1,13 +1,24 @@
-- 기능
-  - 선택한 도시의 현재 날씨 정보와 5일 예보 정보를 페이지에 구현 [o]
-- 필수 구현 사항
+📌 프로젝트 소개
 
-  - Next.js로 프론트엔드와 백엔드 구현 [o]
-  - Next.js 버전은 12로 사용 [o]
-  - Create Next App 사용 [o]
-  - 백엔드는 GraphQL을 사용하여 구현 [o]
-  - 코드 스플리팅 [o]
-  - module css [o]
-  - 반응형 [o] - 1280px 이상일 경우 레이아웃이 화면 가운데에 위치 - 800px 이상 1280px 미만일 경우 반응형으로 항상 레이아웃이 화면 width를 100% 차지하도록 구현 - 800px 미만일 경우 레이아웃 크기가 더 이상 줄지 않고 스크롤로 볼 수 있도록 구현
+fe-weather-app은 Next.js 12 기반으로 제작된 날씨 예보 웹 애플리케이션입니다.
+사용자가 도시를 선택하면, 해당 도시의 현재 날씨 정보와 5일간의 예보를 확인할 수 있습니다.
+• Next.js 12 기반 SSG/ISR
+• GraphQL 백엔드 통신
+• 코드 스플리팅 및 모듈 CSS 활용
+• 반응형 웹 지원
+• On-Demand ISR 기반 페이지 재생성
 
-- 동작 Flow [o]
+⸻
+
+🚀 작동 방법 1. 로컬 실행:
+
+npm install
+npm run dev
+
+    2.	접속:
+
+http://localhost:3000/도시명
+예: http://localhost:3000/Seoul
+
+    3.	페이지 구성:
+    •	도시별 경로 접근 시 getStaticProps + revalidate 설정에 따라 정적 페이지 자동 생성

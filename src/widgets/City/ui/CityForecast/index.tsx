@@ -10,6 +10,7 @@ import forecast from "./style/forecast.module.css";
 const CityForecast = (props: CityForecastProps) => {
   const { date, forecastData } = props;
 
+  console.log("CityForecast", date, forecastData);
   // state
   const [isExpanded, toggleExpanded] = useToggleState();
 

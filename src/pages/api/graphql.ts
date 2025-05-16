@@ -14,7 +14,7 @@ const fetchWeather = async (city: string) => {
   const response = await fetch(
     `https://api.openweathermap.org/data/2.5/forecast?q=${encodeURIComponent(
       city
-    )}&appid=${API_KEY}&units=metric&lang=kr`
+    )}&appid=${API_KEY}&units=metric&lang=en`
   );
 
   if (!response.ok) {
@@ -150,8 +150,7 @@ export const resolvers = {
 };
 
 const apolloServer = new ApolloServer({ typeDefs, resolvers });
-
-let serverStarted = false;
+let apolloHandler: ReturnType<typeof apolloServer.createHandler> | null = null;
 
 export default async function handler(
   req: NextApiRequest,
@@ -161,11 +160,11 @@ export default async function handler(
     res.setHeader("Allow", "POST");
     return res.status(405).end("Method Not Allowed");
   }
-  if (!serverStarted) {
+  if (!apolloHandler) {
     await apolloServer.start();
-    serverStarted = true;
+    apolloHandler = apolloServer.createHandler({ path: "/api/graphql" });
   }
-  return apolloServer.createHandler({ path: "/api/graphql" })(req, res);
+  return apolloHandler(req, res);
 }
 
 export const config = {

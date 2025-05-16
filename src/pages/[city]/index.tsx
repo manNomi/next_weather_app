@@ -57,7 +57,7 @@ const CityPage = (props: CityPageProps) => {
       />
       <main className={layout.wrapper}>
         {/* 배너 영역 */}
-        <div className={banner.topBanner}>
+        <header className={banner.topBanner}>
           <Image
             src={earthIcon}
             alt="Earth graphic icon"
@@ -65,7 +65,7 @@ const CityPage = (props: CityPageProps) => {
             height={51}
           />
           <h1 className={banner.title}>Weather Information for {city}</h1>
-        </div>
+        </header>
 
         {/* 현재 도시의 날씨 섹션 */}
         <section className={summary.summaryCard}>
@@ -98,11 +98,9 @@ const CityPage = (props: CityPageProps) => {
         <section className={layout.forecastSection}>
           <h2 className={layout.forecastHeader}>5-day Forecast</h2>
           {dates.map((date, index) => (
-            <CityForecast
-              key={`${date} - ${index}`}
-              forecastData={grouped[date]}
-              date={date}
-            />
+            <article key={`${date}-${index}`} className={layout.forecastItem}>
+              <CityForecast forecastData={grouped[date]} date={date} />
+            </article>
           ))}
         </section>
       </main>

@@ -22,3 +22,7 @@ http://localhost:3000/도시명
 
     3.	페이지 구성:
     •	도시별 경로 접근 시 getStaticProps + revalidate 설정에 따라 정적 페이지 자동 생성
+
+아래와 같은 파일 생성후 openWeatherapi key를 등록해주세요
+.env
+OPENWEATHER_API_KEY = YOUR_API_KEY

@@ -13,7 +13,6 @@ export async function fetchStatic<TData, TVariables = Record<string, any>>(
     });
     return data;
   } catch (error) {
-    console.error("fetchStatic failed", error);
     throw error;
   }
 }

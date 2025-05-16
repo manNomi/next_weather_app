@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import { client } from "../../shared/util/apolloClient";
+import { client } from "../../shared/lib/apolloClient";
 
 export interface City {
   name: string;

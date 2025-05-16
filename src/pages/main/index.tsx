@@ -2,17 +2,15 @@ import React from "react";
 import Image from "next/image";
 // css
 import Title from "@/widgets/main/style/title.module.css";
-import Button from "@/widgets/main/style/button.module.css";
 import Layout from "@/widgets/main/style/layout.module.css";
 // assets
 import earthGraphic from "@/shared/assets/svg/earth-graphic.svg";
 // constant
 import { WEATHER_CITIES } from "@/shared/constant/weatherCities";
-import { useRouter } from "next/router";
-import Link from "next/link";
+// ui
+import SelectLink from "@/widgets/main/ui/SelectLink";
 
 const Main = () => {
-  const router = useRouter();
   return (
     <div className={Layout.container}>
       <h1 className={Title.title}>
@@ -22,11 +20,13 @@ const Main = () => {
         Choose a city from the list below to check the weather.
       </p>
 
-      <div className={Button.buttonRow}>
-        {WEATHER_CITIES.map((city) => (
-          <Link key={city} href={`/${city}`} passHref legacyBehavior>
-            <a className={Button.button}>{city}</a>
-          </Link>
+      <div className={Layout.buttonContainer}>
+        {WEATHER_CITIES.map((city, index) => (
+          <SelectLink
+            key={`${city}-link-${index}`}
+            innerText={city}
+            href={city}
+          />
         ))}
       </div>
 

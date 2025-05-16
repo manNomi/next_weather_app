@@ -4,7 +4,7 @@ const baseUrl =
   typeof window === "undefined"
     ? process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
     : "";
-export const client = new ApolloClient({
+export const apolloClient = new ApolloClient({
   uri: `${baseUrl}/api/graphql`,
   cache: new InMemoryCache(),
 });

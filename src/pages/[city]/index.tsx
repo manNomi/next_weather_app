@@ -17,11 +17,7 @@ import {
   formatTimestamp,
   formatTime,
 } from "@/shared/lib/dateFormatter";
-
-interface CityPageProps {
-  city: string;
-  data: CityForecastResponse;
-}
+import CityForecast from "@/widgets/CityForecast";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
@@ -38,8 +34,8 @@ export const getStaticProps: GetStaticProps<CityPageProps> = async ({
   return { props: { city, data } };
 };
 
-export default function CityPage({ city, data }: CityPageProps) {
-  const [openDate, setOpenDate] = useState<string | null>(null);
+const CityPage = (props: CityPageProps) => {
+  const { data } = props;
 
   // Group items by date (YYYY-MM-DD)
   const grouped = data.list.reduce<Record<string, ForecastEntry[]>>(
@@ -100,65 +96,10 @@ export default function CityPage({ city, data }: CityPageProps) {
       <section className={forecast.forecastSection}>
         <h2 className={forecast.forecastHeader}>5-day Forecast</h2>
         {dates.map((date) => (
-          <div key={date} className={forecast.accordion}>
-            <button
-              className={forecast.accordionButton}
-              onClick={() => setOpenDate(openDate === date ? null : date)}>
-              <span className={forecast.accordionTitle}>
-                {formatDate(date)}
-              </span>
-              {openDate === date ? (
-                <Image
-                  src={upVectorIcon}
-                  alt="collapse"
-                  width={24}
-                  height={24}
-                />
-              ) : (
-                <Image
-                  src={downVectorIcon}
-                  alt="expand"
-                  width={24}
-                  height={24}
-                />
-              )}
-            </button>
-
-            {openDate === date && (
-              <div className={forecast.accordionContent}>
-                {grouped[date].map((item) => {
-                  const time = formatTime(item.dt);
-                  return (
-                    <div key={item.dt} className={forecast.forecastRow}>
-                      <div className={forecast.rowIconContainer}>
-                        {/* 아이콘: 첫 번째 컬럼 */}
-                        <WeatherIcon code={item.weather.icon} />
-                        {/* 시간: 두 번째 컬럼 */}
-                        <span className={forecast.rowTime}>{time}</span>
-                      </div>
-
-                      {/* 설명: 세 번째 컬럼 */}
-
-                      <div className={forecast.rowDescContainer}>
-                        {/* 설명 */}
-                        <span className={forecast.rowDesc}>
-                          {item.weather.description}
-                        </span>
-
-                        {/* 온도 */}
-                        <span className={forecast.rowTemp}>
-                          {item.temp.min.toFixed(2)}°C /{" "}
-                          {item.temp.max.toFixed(2)}°C
-                        </span>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-          </div>
+          <CityForecast date={date} grouped={grouped} />
         ))}
       </section>
     </main>
   );
-}
+};
+export default CityPage;

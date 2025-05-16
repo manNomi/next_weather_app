@@ -49,6 +49,7 @@
 .button:hover {
   border-color: var(--btn-hover-border-color);
   color: var(--btn-hover-border-color);
+  background-color: var(--btn-hover-color);
 }
 
 /* Selected state */

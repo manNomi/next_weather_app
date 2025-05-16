@@ -1,13 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import styles from "./style.module.css";
 import earthGraphic from "../../shared/assets/svg/earth-graphic.svg";
-
-const cities = ["Seoul", "Tokyo", "Paris", "London"];
+import { WEATHER_CITIES } from "src/shared/constant/weatherCities";
 
 export const Main = () => {
-  const [selectedCity, setSelectedCity] = useState<string>("");
-
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>
@@ -18,13 +15,13 @@ export const Main = () => {
       </p>
 
       <div className={styles.buttonRow}>
-        {cities.map((city) => (
+        {WEATHER_CITIES.map((city) => (
           <button
             key={city}
-            className={`${styles.button} ${
-              selectedCity === city ? styles.selected : ""
-            }`}
-            onClick={() => setSelectedCity(city)}>
+            className={styles.button}
+            onClick={() => {
+              window.location.href = `/city/${city}`;
+            }}>
             {city}
           </button>
         ))}

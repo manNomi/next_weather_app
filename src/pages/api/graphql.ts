@@ -6,6 +6,13 @@ import fetch from "node-fetch"; // if needed for fetch on Node.js
 import { gql } from "apollo-server-micro";
 
 const API_KEY = process.env.OPENWEATHER_API_KEY;
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
 const fetchWeather = async (city: string) => {
   if (!API_KEY) {
     throw new Error("OPENWEATHER_API_KEY not set");
@@ -81,6 +88,7 @@ export const typeDefs = gql`
   }
 `;
 
+// time schema
 const UnixTime = new GraphQLScalarType({
   name: "UnixTime",
   description: "Unix timestamp in seconds",
@@ -149,8 +157,18 @@ export const resolvers = {
   },
 };
 
-const apolloServer = new ApolloServer({ typeDefs, resolvers });
-let apolloHandler: ReturnType<typeof apolloServer.createHandler> | null = null;
+// ApolloServer 인스턴스 및 핸들러 캐시
+let apolloServer: ApolloServer;
+let apolloHandler: ReturnType<ApolloServer["createHandler"]> | null = null;
+
+async function getApolloHandler() {
+  if (!apolloHandler) {
+    apolloServer = new ApolloServer({ typeDefs, resolvers });
+    await apolloServer.start();
+    apolloHandler = apolloServer.createHandler({ path: "/api/graphql" });
+  }
+  return apolloHandler;
+}
 
 export default async function handler(
   req: NextApiRequest,
@@ -160,15 +178,7 @@ export default async function handler(
     res.setHeader("Allow", "POST");
     return res.status(405).end("Method Not Allowed");
   }
-  if (!apolloHandler) {
-    await apolloServer.start();
-    apolloHandler = apolloServer.createHandler({ path: "/api/graphql" });
-  }
-  return apolloHandler(req, res);
-}
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
+  const h = await getApolloHandler();
+  return h(req, res);
+}

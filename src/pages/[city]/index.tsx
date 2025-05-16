@@ -30,14 +30,17 @@ export const getStaticProps: GetStaticProps<CityPageProps> = async ({
 }) => {
   const city = params?.city as string;
   const data = await getForecastByCity({ city });
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
   return { props: { city, data }, revalidate: 10 * 60 };
 };
 
 const CityPage = (props: CityPageProps) => {
   const { city, data } = props;
   const { country, population } = data.city;
-
-  console.log("CityPage", data);
 
   // 날짜별로 그룹화된 데이터를 메모이제이션
   const grouped = React.useMemo(() => convertGroupedByDate(data), [data]);

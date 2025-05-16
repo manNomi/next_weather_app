@@ -30,7 +30,7 @@ export const getStaticProps: GetStaticProps<CityPageProps> = async ({
   params,
 }) => {
   const city = params?.city as string;
-  const data = await getForecastByCity({ city });
+  const data = await getForecastByCity(city);
   if (!data) {
     return {
       notFound: true,

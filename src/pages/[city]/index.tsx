@@ -1,17 +1,22 @@
+import React from "react";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Image from "next/image";
+// css
 import banner from "@/widgets/City/style/banner.module.css";
 import layout from "@/widgets/City/style/layout.module.css";
 import summary from "@/widgets/City/style/summary.module.css";
-
+// api
 import { getForecastByCity } from "@/entity/forecast/getForecastByCity";
+// assets
 import earthIcon from "@/shared/assets/svg/earth-graphic.svg";
+// ui
 import WeatherIcon from "@/shared/ui/WeatherIcon";
-import { WEATHER_CITIES } from "@/shared/constant/weatherCities";
-import { formatTimestamp } from "@/shared/lib/dateFormatter";
 import CityForecast from "@/widgets/city/ui/CityForecast";
+// constant
+import { WEATHER_CITIES } from "@/shared/constant/weatherCities";
+// lib
+import { formatTimestamp } from "@/shared/lib/dateFormatter";
 import { convertGroupedByDate } from "../../widgets/city/lib/convertGroupedByDate";
-import React from "react";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
@@ -24,7 +29,7 @@ export const getStaticProps: GetStaticProps<CityPageProps> = async ({
   params,
 }) => {
   const city = params?.city as string;
-  const data = await getForecastByCity(city);
+  const data = await getForecastByCity({ city });
   return { props: { city, data }, revalidate: 10 * 60 };
 };
 

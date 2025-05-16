@@ -9,6 +9,7 @@ import earthGraphic from "@/shared/assets/svg/earth-graphic.svg";
 // constant
 import { WEATHER_CITIES } from "@/shared/constant/weatherCities";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const Main = () => {
   const router = useRouter();
@@ -23,14 +24,9 @@ const Main = () => {
 
       <div className={Button.buttonRow}>
         {WEATHER_CITIES.map((city) => (
-          <button
-            key={city}
-            className={Button.button}
-            onClick={() => {
-              router.push(`/${city}`);
-            }}>
-            {city}
-          </button>
+          <Link key={city} href={`/${city}`} passHref legacyBehavior>
+            <a className={Button.button}>{city}</a>
+          </Link>
         ))}
       </div>
 

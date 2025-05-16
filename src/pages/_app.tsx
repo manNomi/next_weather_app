@@ -4,10 +4,12 @@ import CommonMetaTags from "@/shared/lib/meta/meta";
 
 const App = ({ Component, pageProps }) => {
   return (
-    <GlobalLayout>
+    <>
       <CommonMetaTags />
-      <Component {...pageProps} />
-    </GlobalLayout>
+      <GlobalLayout>
+        <Component {...pageProps} />
+      </GlobalLayout>
+    </>
   );
 };
 

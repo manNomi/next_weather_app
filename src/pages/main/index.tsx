@@ -9,36 +9,40 @@ import earthGraphic from "@/shared/assets/svg/earth-graphic.svg";
 import { WEATHER_CITIES } from "@/shared/constant/weatherCities";
 // ui
 import SelectLink from "@/widgets/main/ui/SelectLink";
+import SeoMetaTags from "@/shared/lib/meta/seoMetaTag";
 
 const Main = () => {
   return (
-    <div className={Layout.container}>
-      <h1 className={Title.title}>
-        Welcome to <div className={Title.highlight}>Weather App!</div>
-      </h1>
-      <p className={Title.subtitle}>
-        Choose a city from the list below to check the weather.
-      </p>
+    <>
+      <SeoMetaTags />
+      <div className={Layout.container}>
+        <h1 className={Title.title}>
+          Welcome to <div className={Title.highlight}>Weather App!</div>
+        </h1>
+        <p className={Title.subtitle}>
+          Choose a city from the list below to check the weather.
+        </p>
 
-      <div className={Layout.buttonContainer}>
-        {WEATHER_CITIES.map((city, index) => (
-          <SelectLink
-            key={`${city}-link-${index}`}
-            innerText={city}
-            href={city}
+        <div className={Layout.buttonContainer}>
+          {WEATHER_CITIES.map((city, index) => (
+            <SelectLink
+              key={`${city}-link-${index}`}
+              innerText={city}
+              href={city}
+            />
+          ))}
+        </div>
+
+        <div className={Layout.earthWrapper}>
+          <Image
+            src={earthGraphic}
+            alt="Earth graphic"
+            width={400}
+            height={400}
           />
-        ))}
+        </div>
       </div>
-
-      <div className={Layout.earthWrapper}>
-        <Image
-          src={earthGraphic}
-          alt="Earth graphic"
-          width={400}
-          height={400}
-        />
-      </div>
-    </div>
+    </>
   );
 };
 

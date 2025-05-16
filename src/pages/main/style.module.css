@@ -7,7 +7,6 @@
 }
 
 .title {
-  font-family: var(--font-heading);
   font-weight: 900;
   font-size: 82px;
   line-height: 1.1;
@@ -15,10 +14,13 @@
   color: var(--text-color);
   text-align: center;
   margin: 0;
+  white-space: normal;
+  display: block;
 }
 
 .highlight {
   color: var(--primary-color);
+  display: block;
 }
 
 .subtitle {

@@ -4,11 +4,11 @@ import styles from "./style.module.css";
 import earthGraphic from "../../shared/assets/svg/earth-graphic.svg";
 import { WEATHER_CITIES } from "src/shared/constant/weatherCities";
 
-export const Main = () => {
+const Main = () => {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>
-        Welcome to <span className={styles.highlight}>Weather App!</span>
+        Welcome to <div className={styles.highlight}>Weather App!</div>
       </h1>
       <p className={styles.subtitle}>
         Choose a city from the list below to check the weather.
@@ -20,7 +20,7 @@ export const Main = () => {
             key={city}
             className={styles.button}
             onClick={() => {
-              window.location.href = `/city/${city}`;
+              window.location.href = `/${city}`;
             }}>
             {city}
           </button>

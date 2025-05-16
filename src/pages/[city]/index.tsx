@@ -1,15 +1,33 @@
 import { useRouter } from "next/router";
+import styles from "./style.module.css";
 
-const City = () => {
-  const router = useRouter();
-  const { city } = router.query;
+const CityPage = () => {
+  const { query } = useRouter();
+  const { city } = query;
 
   return (
-    <div>
-      <h1>도시 이름: {city}</h1>
-      <p>여기는 {city}의 날씨 정보 페이지입니다.</p>
-    </div>
+    <main className={styles.wrapper}>
+      <section className={styles.panel}>
+        <h1 className={styles.title}>Weather Information for {city}</h1>
+        <div className={styles.placeholderCard} />
+        <div className={styles.placeholderRow} />
+        <div className={styles.placeholderRow} />
+        <div className={styles.placeholderRow} />
+        <div className={styles.placeholderRow} />
+        <div className={styles.placeholderRow} />
+      </section>
+
+      <section className={styles.panel}>
+        <h1 className={styles.title}>Weather Information for {city}</h1>
+        <div className={styles.placeholderCard} />
+        <div className={styles.placeholderRow} />
+        <div className={styles.placeholderRow} />
+        <div className={styles.placeholderRow} />
+        <div className={styles.placeholderRow} />
+        <div className={styles.placeholderRow} />
+      </section>
+    </main>
   );
 };
 
-export default City;
+export default CityPage;

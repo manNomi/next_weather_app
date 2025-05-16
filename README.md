@@ -26,3 +26,6 @@ http://localhost:3000/도시명
 아래와 같은 파일 생성후 openWeatherapi key를 등록해주세요
 .env
 OPENWEATHER_API_KEY = YOUR_API_KEY
+
+구현 과정 정리
+https://second-system-cf4.notion.site/1f57cf19a36480108112f7c9e95fc86f?pvs=74

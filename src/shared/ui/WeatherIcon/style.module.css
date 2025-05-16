@@ -1,0 +1,12 @@
+.fallback {
+  /* 지정값 */
+  font-weight: 700;
+  background-color: var(--secondary-color);
+  line-height: 1.1;
+
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}

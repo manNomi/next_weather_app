@@ -1,7 +1,11 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useState } from "react";
 import Image from "next/image";
-import style from "./style.module.css";
+import forecast from "./style/forecast.module.css";
+import banner from "./style/banner.module.css";
+import layout from "./style/layout.module.css";
+import summary from "./style/summary.module.css";
+
 import {
   getWeatherByCity,
   Forecast,
@@ -57,39 +61,39 @@ export default function CityPage({ city, data }: CityPageProps) {
   const today = data.list[0];
 
   return (
-    <main className={style.wrapper}>
+    <main className={layout.wrapper}>
       {/* 배너 영역 */}
-      <div className={style.topBanner}>
+      <div className={banner.topBanner}>
         <Image
           src={earthIcon}
           alt="Earth graphic icon"
           width={68}
           height={51}
         />
-        <h1 className={style.title}>
+        <h1 className={banner.title}>
           Weather Information for {data.city.name}
         </h1>
       </div>
 
       {/* 현재 도시의 날씨 섹션 */}
-      <section className={style.summaryCard}>
-        <div className={style.summaryLeft}>
+      <section className={summary.summaryCard}>
+        <div className={summary.summaryLeft}>
           <WeatherIcon code={today.weather.icon} size={80} />
           <div>
-            <div className={style.timestamp}>{formatTimestamp(today.dt)}</div>
-            <div className={style.location}>
+            <div className={summary.timestamp}>{formatTimestamp(today.dt)}</div>
+            <div className={summary.location}>
               {data.city.name}, {data.city.country}
-              <span className={style.population}>
+              <span className={summary.population}>
                 (인구수 : {data.city.population})
               </span>
             </div>
           </div>
         </div>
-        <div className={style.summaryRight}>
-          <div className={style.tempLarge}>
+        <div className={summary.summaryRight}>
+          <div className={summary.tempLarge}>
             {today.temp.current.toFixed(2)}°C
           </div>
-          <div className={style.details}>
+          <div className={summary.details}>
             Feels like {today.temp.feelsLike.toFixed(2)}°C ·{" "}
             {today.weather.description} 풍속{today.wind.speed.toFixed(2)}m/s ·
             습도 {today.temp.humidity}%
@@ -97,14 +101,16 @@ export default function CityPage({ city, data }: CityPageProps) {
         </div>
       </section>
 
-      <section className={style.forecastSection}>
-        <h2 className={style.forecastHeader}>5-day Forecast</h2>
+      <section className={forecast.forecastSection}>
+        <h2 className={forecast.forecastHeader}>5-day Forecast</h2>
         {dates.map((date) => (
-          <div key={date} className={style.accordion}>
+          <div key={date} className={forecast.accordion}>
             <button
-              className={style.accordionButton}
+              className={forecast.accordionButton}
               onClick={() => setOpenDate(openDate === date ? null : date)}>
-              <span className={style.accordionTitle}>{formatDate(date)}</span>
+              <span className={forecast.accordionTitle}>
+                {formatDate(date)}
+              </span>
               {openDate === date ? (
                 <Image
                   src={upVectorIcon}
@@ -123,28 +129,28 @@ export default function CityPage({ city, data }: CityPageProps) {
             </button>
 
             {openDate === date && (
-              <div className={style.accordionContent}>
+              <div className={forecast.accordionContent}>
                 {grouped[date].map((item) => {
                   const time = formatTime(item.dt);
                   return (
-                    <div key={item.dt} className={style.forecastRow}>
-                      <div className={style.rowIconContainer}>
+                    <div key={item.dt} className={forecast.forecastRow}>
+                      <div className={forecast.rowIconContainer}>
                         {/* 아이콘: 첫 번째 컬럼 */}
                         <WeatherIcon code={item.weather.icon} />
                         {/* 시간: 두 번째 컬럼 */}
-                        <span className={style.rowTime}>{time}</span>
+                        <span className={forecast.rowTime}>{time}</span>
                       </div>
 
                       {/* 설명: 세 번째 컬럼 */}
 
-                      <div className={style.rowDescContainer}>
+                      <div className={forecast.rowDescContainer}>
                         {/* 설명 */}
-                        <span className={style.rowDesc}>
+                        <span className={forecast.rowDesc}>
                           {item.weather.description}
                         </span>
 
                         {/* 온도 */}
-                        <span className={style.rowTemp}>
+                        <span className={forecast.rowTemp}>
                           {item.temp.min.toFixed(2)}°C /{" "}
                           {item.temp.max.toFixed(2)}°C
                         </span>

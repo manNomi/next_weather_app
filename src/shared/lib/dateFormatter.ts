@@ -5,6 +5,14 @@ export const formatDate = (dateStr: string): string => {
   });
 };
 
+export const formatTime = (timestamp: number): string => {
+  return new Date(timestamp * 1000).toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+  });
+};
+
 export const formatTimestamp = (timestamp: number): string => {
   const dateObj = new Date(timestamp * 1000);
   return (
@@ -19,14 +27,6 @@ export const formatTimestamp = (timestamp: number): string => {
       hour12: true,
     })
   );
-};
-
-export const formatTime = (timestamp: number): string => {
-  return new Date(timestamp * 1000).toLocaleTimeString("en-US", {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: true,
-  });
 };
 
 export const getDateFromTimestamp = (timestamp: number): string => {

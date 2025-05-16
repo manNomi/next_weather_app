@@ -47,7 +47,8 @@ const CityPage = (props: CityPageProps) => {
   const grouped = React.useMemo(() => convertGroupedByDate(data), [data]);
   const dates = Object.keys(grouped);
 
-  const today = data.list[0];
+  // grouped[dates[0]]는 해당 날짜에 대한 예보 데이터 배열을 반환
+  const today = grouped[dates[0]][0];
 
   return (
     <>

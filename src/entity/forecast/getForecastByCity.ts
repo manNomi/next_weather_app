@@ -32,9 +32,8 @@ export const GET_FORECAST_BY_CITY: DocumentNode = gql`
 
 export async function getForecastByCity(props: CityForecastRequest) {
   const { city } = props;
-  const result = await fetchStatic<
-    { forecast: CityForecastResponse },
-    { city: string }
-  >(GET_FORECAST_BY_CITY, { city });
+  const result = await fetchStatic<CityForecastRequest>(GET_FORECAST_BY_CITY, {
+    city,
+  });
   return result.forecast;
 }

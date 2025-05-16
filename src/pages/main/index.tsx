@@ -8,8 +8,10 @@ import Layout from "@/widgets/main/style/layout.module.css";
 import earthGraphic from "@/shared/assets/svg/earth-graphic.svg";
 // constant
 import { WEATHER_CITIES } from "@/shared/constant/weatherCities";
+import { useRouter } from "next/router";
 
 const Main = () => {
+  const router = useRouter();
   return (
     <div className={Layout.container}>
       <h1 className={Title.title}>
@@ -25,7 +27,7 @@ const Main = () => {
             key={city}
             className={Button.button}
             onClick={() => {
-              window.location.href = `/${city}`;
+              router.push(`/${city}`);
             }}>
             {city}
           </button>

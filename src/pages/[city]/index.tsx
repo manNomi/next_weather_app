@@ -36,7 +36,7 @@ export const getStaticProps: GetStaticProps<CityPageProps> = async ({
       notFound: true,
     };
   }
-  return { props: { city, data }, revalidate: 10 * 60 };
+  return { props: { city, data }, revalidate: 30 * 60 };
 };
 
 const CityPage = (props: CityPageProps) => {

@@ -1,6 +1,6 @@
 import { getDateFromTimestamp } from "@/shared/lib/dateFormatter";
 
-export const convertGrouped = (data: CityForecastResponse) => {
+export const convertGroupedByDate = (data: CityForecastResponse) => {
   const grouped = data.list.reduce<Record<string, ForecastEntry[]>>(
     (acc, item) => {
       const date = getDateFromTimestamp(item.dt);

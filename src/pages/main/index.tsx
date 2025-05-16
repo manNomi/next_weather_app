@@ -1,26 +1,29 @@
 import React from "react";
 import Image from "next/image";
-import header from "@/widgets/main/style/header.module.css";
-import button from "@/widgets/main/style/button.module.css";
-import layout from "@/widgets/main/style/layout.module.css";
+// css
+import Title from "@/widgets/main/style/title.module.css";
+import Button from "@/widgets/main/style/button.module.css";
+import Layout from "@/widgets/main/style/layout.module.css";
+// assets
 import earthGraphic from "@/shared/assets/svg/earth-graphic.svg";
+// constant
 import { WEATHER_CITIES } from "@/shared/constant/weatherCities";
 
 const Main = () => {
   return (
-    <div className={layout.container}>
-      <h1 className={header.title}>
-        Welcome to <div className={header.highlight}>Weather App!</div>
+    <div className={Layout.container}>
+      <h1 className={Title.title}>
+        Welcome to <div className={Title.highlight}>Weather App!</div>
       </h1>
-      <p className={header.subtitle}>
+      <p className={Title.subtitle}>
         Choose a city from the list below to check the weather.
       </p>
 
-      <div className={button.buttonRow}>
+      <div className={Button.buttonRow}>
         {WEATHER_CITIES.map((city) => (
           <button
             key={city}
-            className={button.button}
+            className={Button.button}
             onClick={() => {
               window.location.href = `/${city}`;
             }}>
@@ -29,7 +32,7 @@ const Main = () => {
         ))}
       </div>
 
-      <div className={layout.earthWrapper}>
+      <div className={Layout.earthWrapper}>
         <Image
           src={earthGraphic}
           alt="Earth graphic"

@@ -16,9 +16,8 @@
   --muted-deep-text-color: var(--color-text-muted-deep);
 }
 
-/* 개발중 white로 구현 */
 /* Dark Theme */
-@media (prefers-color-scheme: white) {
+@media (prefers-color-scheme: dark) {
   :root {
     --background-color: var(--color-background-dark);
 

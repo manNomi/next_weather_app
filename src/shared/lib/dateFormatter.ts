@@ -28,3 +28,7 @@ export const formatTime = (timestamp: number): string => {
     hour12: true,
   });
 };
+
+export const getDateFromTimestamp = (timestamp: number): string => {
+  return new Date(timestamp * 1000).toISOString().split("T")[0];
+};

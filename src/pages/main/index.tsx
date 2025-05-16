@@ -15,7 +15,7 @@ const Main = () => {
   return (
     <>
       <SeoMetaTags />
-      <div className={Layout.container}>
+      <main className={Layout.container}>
         <h1 className={Title.title}>
           Welcome to <div className={Title.highlight}>Weather App!</div>
         </h1>
@@ -23,7 +23,7 @@ const Main = () => {
           Choose a city from the list below to check the weather.
         </p>
 
-        <div className={Layout.buttonContainer}>
+        <nav className={Layout.buttonContainer}>
           {WEATHER_CITIES.map((city, index) => (
             <SelectLink
               key={`${city}-link-${index}`}
@@ -31,17 +31,17 @@ const Main = () => {
               href={city}
             />
           ))}
-        </div>
+        </nav>
 
-        <div className={Layout.earthWrapper}>
+        <section className={Layout.earthWrapper}>
           <Image
             src={earthGraphic}
             alt="Earth graphic"
             width={400}
             height={400}
           />
-        </div>
-      </div>
+        </section>
+      </main>
     </>
   );
 };

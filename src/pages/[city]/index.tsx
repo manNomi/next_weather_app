@@ -55,10 +55,10 @@ export default function CityPage({ city, data }: CityPageProps) {
   const dates = Object.keys(grouped);
 
   const today = data.list[0];
-  const dateObj = new Date(today.dt * 1000);
 
   return (
     <main className={style.wrapper}>
+      {/* 배너 영역 */}
       <div className={style.topBanner}>
         <Image
           src={earthIcon}
@@ -71,6 +71,7 @@ export default function CityPage({ city, data }: CityPageProps) {
         </h1>
       </div>
 
+      {/* 현재 도시의 날씨 섹션 */}
       <section className={style.summaryCard}>
         <div className={style.summaryLeft}>
           <WeatherIcon code={today.weather.icon} size={80} />
@@ -78,6 +79,9 @@ export default function CityPage({ city, data }: CityPageProps) {
             <div className={style.timestamp}>{formatTimestamp(today.dt)}</div>
             <div className={style.location}>
               {data.city.name}, {data.city.country}
+              <span className={style.population}>
+                (인구수 : {data.city.population})
+              </span>
             </div>
           </div>
         </div>
@@ -87,8 +91,8 @@ export default function CityPage({ city, data }: CityPageProps) {
           </div>
           <div className={style.details}>
             Feels like {today.temp.feelsLike.toFixed(2)}°C ·{" "}
-            {today.weather.description} ·{today.wind.speed.toFixed(1)}m/s ·
-            Humidity {today.temp.humidity}%
+            {today.weather.description} 풍속{today.wind.speed.toFixed(2)}m/s ·
+            습도 {today.temp.humidity}%
           </div>
         </div>
       </section>
@@ -105,40 +109,46 @@ export default function CityPage({ city, data }: CityPageProps) {
                 <Image
                   src={upVectorIcon}
                   alt="collapse"
-                  width={20}
-                  height={20}
+                  width={24}
+                  height={24}
                 />
               ) : (
                 <Image
                   src={downVectorIcon}
                   alt="expand"
-                  width={20}
-                  height={20}
+                  width={24}
+                  height={24}
                 />
               )}
             </button>
+
             {openDate === date && (
               <div className={style.accordionContent}>
                 {grouped[date].map((item) => {
                   const time = formatTime(item.dt);
                   return (
                     <div key={item.dt} className={style.forecastRow}>
-                      {/* 아이콘: 첫 번째 컬럼 */}
-                      <WeatherIcon code={item.weather.icon} size={32} />
-
-                      {/* 시간: 두 번째 컬럼 */}
-                      <span className={style.rowTime}>{time}</span>
+                      <div className={style.rowIconContainer}>
+                        {/* 아이콘: 첫 번째 컬럼 */}
+                        <WeatherIcon code={item.weather.icon} />
+                        {/* 시간: 두 번째 컬럼 */}
+                        <span className={style.rowTime}>{time}</span>
+                      </div>
 
                       {/* 설명: 세 번째 컬럼 */}
-                      <span className={style.rowDesc}>
-                        {item.weather.description}
-                      </span>
 
-                      {/* 온도: 네 번째 컬럼 */}
-                      <span className={style.rowTemp}>
-                        {item.temp.min.toFixed(2)}°C /{" "}
-                        {item.temp.max.toFixed(2)}°C
-                      </span>
+                      <div className={style.rowDescContainer}>
+                        {/* 설명 */}
+                        <span className={style.rowDesc}>
+                          {item.weather.description}
+                        </span>
+
+                        {/* 온도 */}
+                        <span className={style.rowTemp}>
+                          {item.temp.min.toFixed(2)}°C /{" "}
+                          {item.temp.max.toFixed(2)}°C
+                        </span>
+                      </div>
                     </div>
                   );
                 })}

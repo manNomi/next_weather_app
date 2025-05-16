@@ -33,6 +33,7 @@ export const typeDefs = gql`
     country: String!
     sunrise: UnixTime!
     sunset: UnixTime!
+    population: Int
   }
 
   type WeatherBrief {
@@ -111,6 +112,7 @@ export const resolvers = {
             country: raw.city.country,
             sunrise: raw.city.sunrise,
             sunset: raw.city.sunset,
+            population: raw.city.population,
           },
           list: raw.list.map((item) => ({
             dt: item.dt,

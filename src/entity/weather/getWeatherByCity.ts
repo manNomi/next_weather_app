@@ -6,6 +6,7 @@ export interface City {
   country: string;
   sunrise: number;
   sunset: number;
+  population: number;
 }
 
 export interface Temperature {
@@ -56,6 +57,7 @@ const GET_WEATHER_BY_CITY = gql`
         country
         sunrise
         sunset
+        population
       }
       list {
         dt

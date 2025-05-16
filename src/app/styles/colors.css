@@ -1,18 +1,21 @@
 :root {
-  /* Theme Colors */
-  --primary-color: #ff0045;
-  --secondary-color: #ffd2cc;
-  --background-color: #faf7f5;
+  /* Color Palette */
+  --color-primary: #ff0045;
+  --color-secondary: #ffd2cc;
+  --color-background-light: #faf7f5;
+  --color-background-dark: #1a1a1a;
+  --color-surface-dark: #2a2a2a;
+  --color-surface-light: #ffffff;
 
-  /* Button */
-  --btn-hover-color: var(--secondary-color);
-  --btn-hover-border-color: #b70055;
-  --btn-select-color: #ffaba1;
-  --btn-select-border-color: var(--primary-color);
+  --color-border-dark: #b70055;
+  --color-border-light: #e5e5e5;
+  --color-btn-select: #ffaba1;
+  --color-btn-select-dark: #ff3b3b;
 
-  /* Text */
-  --banner-text-color-black: #3d3d3d;
-  --description-gray: #8b8b8b;
+  --color-text-dark: #3d3d3d;
+  --color-text-light: #e0e0e0;
+  --color-text-muted: #8b8b8b;
+  --color-text-muted-deep: #555555;
 
   /* Font */
   --font-heading: "Pretendard", sans-serif;

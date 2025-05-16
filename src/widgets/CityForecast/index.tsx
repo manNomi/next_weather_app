@@ -8,10 +8,13 @@ import downVectorIcon from "@/shared/assets/svg/down-vector.svg";
 import forecast from "./style/forecast.module.css";
 
 const CityForecast = (props: CityForecastProps) => {
+  const { date, forecastData } = props;
+
+  // state
   const [isExpanded, toggleExpanded] = useToggleState();
-  const { date, grouped } = props;
+
   return (
-    <div key={date} className={forecast.accordion}>
+    <div className={forecast.accordion}>
       <button className={forecast.accordionButton} onClick={toggleExpanded}>
         <span className={forecast.accordionTitle}>{formatDate(date)}</span>
         {isExpanded ? (
@@ -23,8 +26,8 @@ const CityForecast = (props: CityForecastProps) => {
 
       {isExpanded && (
         <div className={forecast.accordionContent}>
-          {grouped[date].map((item) => (
-            <div key={item.dt} className={forecast.forecastRow}>
+          {forecastData[date].map((item, index) => (
+            <div key={`${item.dt} - ${index}`} className={forecast.forecastRow}>
               <div className={forecast.rowIconContainer}>
                 {/* 아이콘: 첫 번째 컬럼 */}
                 <WeatherIcon code={item.weather.icon} />

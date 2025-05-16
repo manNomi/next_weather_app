@@ -10,6 +10,8 @@ import WeatherIcon from "../../shared/ui/WeatherIcon";
 import { WEATHER_CITIES } from "@/shared/constant/weatherCities";
 import { formatTimestamp } from "@/shared/lib/dateFormatter";
 import CityForecast from "@/widgets/CityForecast";
+import { convertGrouped } from "./lib/grouped";
+import React from "react";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
@@ -23,23 +25,14 @@ export const getStaticProps: GetStaticProps<CityPageProps> = async ({
 }) => {
   const city = params?.city as string;
   const data = await getForecastByCity(city);
-  return { props: { city, data } };
+  return { props: { city, data }, revalidate: 10 * 60 };
 };
 
 const CityPage = (props: CityPageProps) => {
   const { data } = props;
 
-  // Group items by date (YYYY-MM-DD)
-  const grouped = data.list.reduce<Record<string, ForecastEntry[]>>(
-    (acc, item) => {
-      const date = new Date(item.dt * 1000).toISOString().split("T")[0];
-      if (!acc[date]) acc[date] = [];
-      acc[date].push(item);
-      return acc;
-    },
-    {}
-  );
-
+  // 날짜별로 그룹화된 데이터를 메모이제이션
+  const grouped = React.useMemo(() => convertGrouped(data), [data]);
   const dates = Object.keys(grouped);
 
   const today = data.list[0];
@@ -87,8 +80,12 @@ const CityPage = (props: CityPageProps) => {
 
       <section className={layout.forecastSection}>
         <h2 className={layout.forecastHeader}>5-day Forecast</h2>
-        {dates.map((date) => (
-          <CityForecast date={date} grouped={grouped} />
+        {dates.map((date, index) => (
+          <CityForecast
+            key={`${date} - ${index}`}
+            forecastData={grouped[date]}
+            date={date}
+          />
         ))}
       </section>
     </main>

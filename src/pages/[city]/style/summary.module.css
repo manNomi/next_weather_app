@@ -1,0 +1,54 @@
+.summaryCard {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin-bottom: 32px;
+}
+
+/* ===== Summary Details ===== */
+.population {
+  /* 지정값  */
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted-text-color);
+}
+
+.summaryLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.timestamp {
+  /* 지정값 */
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--muted-deep-text-color);
+}
+
+.location {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.summaryRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.tempLarge {
+  font-weight: 700;
+  font-size: 50px;
+}
+
+.details {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--muted-text-color);
+  margin-top: 4px;
+}

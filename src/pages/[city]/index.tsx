@@ -1,16 +1,16 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Image from "next/image";
-import banner from "./style/banner.module.css";
-import layout from "./style/layout.module.css";
-import summary from "./style/summary.module.css";
+import banner from "@/widgets/City/style/banner.module.css";
+import layout from "@/widgets/City/style/layout.module.css";
+import summary from "@/widgets/City/style/summary.module.css";
 
 import { getForecastByCity } from "@/entity/forecast/getForecastByCity";
 import earthIcon from "@/shared/assets/svg/earth-graphic.svg";
-import WeatherIcon from "../../shared/ui/WeatherIcon";
+import WeatherIcon from "@/shared/ui/WeatherIcon";
 import { WEATHER_CITIES } from "@/shared/constant/weatherCities";
 import { formatTimestamp } from "@/shared/lib/dateFormatter";
-import CityForecast from "@/widgets/CityForecast";
-import { convertGrouped } from "./lib/grouped";
+import CityForecast from "@/widgets/City/ui/CityForecast";
+import { convertGroupedByDate } from "../../widgets/City/lib/convertGroupedByDate";
 import React from "react";
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -32,7 +32,7 @@ const CityPage = (props: CityPageProps) => {
   const { data } = props;
 
   // 날짜별로 그룹화된 데이터를 메모이제이션
-  const grouped = React.useMemo(() => convertGrouped(data), [data]);
+  const grouped = React.useMemo(() => convertGroupedByDate(data), [data]);
   const dates = Object.keys(grouped);
 
   const today = data.list[0];

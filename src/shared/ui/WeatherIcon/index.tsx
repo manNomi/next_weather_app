@@ -2,13 +2,9 @@ import React from "react";
 import Image from "next/image";
 import styles from "./style.module.css";
 
-interface WeatherIconProps {
-  code: string;
-  size?: number;
-  alt?: string;
-}
+const WeatherIcon = (props: WeatherIconProps) => {
+  const { code, size = 60, alt } = props;
 
-const WeatherIcon: React.FC<WeatherIconProps> = ({ code, size = 60, alt }) => {
   const src =
     code.includes("/") || code.includes(".")
       ? code

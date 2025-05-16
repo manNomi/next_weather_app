@@ -3,7 +3,6 @@
   flex-direction: column;
   align-items: center; /* 가로 중앙 정렬 */
   padding: 32px;
-  background-color: var(--background-color);
 }
 
 .earthWrapper {

@@ -16,7 +16,7 @@ import CityForecast from "@/widgets/city/ui/CityForecast";
 import { WEATHER_CITIES } from "@/shared/constant/weatherCities";
 // lib
 import { formatTimestamp } from "@/shared/lib/dateFormatter";
-import { convertGroupedByDate } from "../../widgets/city/lib/convertGroupedByDate";
+import { convertGroupedByDate } from "@/widgets/city/lib/convertGroupedByDate";
 import SeoMetaTags from "@/shared/lib/meta/seoMetaTag";
 
 export const getStaticPaths: GetStaticPaths = async () => {

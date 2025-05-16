@@ -9,8 +9,8 @@ import earthIcon from "@/shared/assets/svg/earth-graphic.svg";
 import WeatherIcon from "@/shared/ui/WeatherIcon";
 import { WEATHER_CITIES } from "@/shared/constant/weatherCities";
 import { formatTimestamp } from "@/shared/lib/dateFormatter";
-import CityForecast from "@/widgets/City/ui/CityForecast";
-import { convertGroupedByDate } from "../../widgets/City/lib/convertGroupedByDate";
+import CityForecast from "@/widgets/city/ui/CityForecast";
+import { convertGroupedByDate } from "../../widgets/city/lib/convertGroupedByDate";
 import React from "react";
 
 export const getStaticPaths: GetStaticPaths = async () => {

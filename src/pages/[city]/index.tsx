@@ -1,22 +1,14 @@
 import { GetStaticPaths, GetStaticProps } from "next";
-import { useState } from "react";
 import Image from "next/image";
-import forecast from "./style/forecast.module.css";
 import banner from "./style/banner.module.css";
 import layout from "./style/layout.module.css";
 import summary from "./style/summary.module.css";
 
 import { getForecastByCity } from "@/entity/forecast/getForecastByCity";
-import downVectorIcon from "@/shared/assets/svg/down-vector.svg";
-import upVectorIcon from "@/shared/assets/svg/up-vector.svg";
 import earthIcon from "@/shared/assets/svg/earth-graphic.svg";
 import WeatherIcon from "../../shared/ui/WeatherIcon";
 import { WEATHER_CITIES } from "@/shared/constant/weatherCities";
-import {
-  formatDate,
-  formatTimestamp,
-  formatTime,
-} from "@/shared/lib/dateFormatter";
+import { formatTimestamp } from "@/shared/lib/dateFormatter";
 import CityForecast from "@/widgets/CityForecast";
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -93,8 +85,8 @@ const CityPage = (props: CityPageProps) => {
         </div>
       </section>
 
-      <section className={forecast.forecastSection}>
-        <h2 className={forecast.forecastHeader}>5-day Forecast</h2>
+      <section className={layout.forecastSection}>
+        <h2 className={layout.forecastHeader}>5-day Forecast</h2>
         {dates.map((date) => (
           <CityForecast date={date} grouped={grouped} />
         ))}

@@ -1,38 +1,124 @@
 .wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
-  max-width: 1280px;
+  max-width: 900px;
   margin: 0 auto;
-  padding: 24px;
+  padding: 24px 16px;
 }
 
-.panel {
-  background: var(--background-color);
-  border: 1px solid var(--gray);
-  border-radius: 8px;
-  padding: 24px;
+.topBanner {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 32px;
 }
 
 .title {
-  font-size: var(--header-size);
-  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
   margin: 0;
+  text-align: center;
 }
 
-.placeholderCard {
-  height: 64px;
-  border: 1px dashed var(--gray);
-  border-radius: 6px;
+.summaryCard {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin-bottom: 32px;
 }
 
-.placeholderRow {
-  height: 48px;
-  border-bottom: 1px solid var(--gray);
+.summaryLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.timestamp {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.location {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.summaryRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.tempLarge {
+  font-size: 2.75rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.details {
+  font-size: 0.9rem;
+  color: #444;
+  margin-top: 4px;
+}
+
+.forecastSection {
+  margin-top: 16px;
+}
+
+.forecastHeader {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.accordion {
+  border-top: 1px solid #ddd;
+}
+
+.accordionButton {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 14px 4px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  cursor: pointer;
+}
+
+.accordionTitle {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.accordionContent {
+  padding: 8px 0 16px;
+}
+
+.forecastRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+.rowTime {
+  width: 60px;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.rowTemp {
+  width: 100px;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.rowDesc {
+  flex: 1;
+  font-size: 0.9rem;
+  color: #555;
 }
